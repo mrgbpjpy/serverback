@@ -13,11 +13,14 @@ app.use(cors({
 app.use(express.json());
 
 //connect to mongoose
-mongoose.connect(URI);
+mongoose.connect(URI)
+.then(()=>{
+  console.log('Connect to MongoDB')
+})
 //require route
-app.use('/', (req, res)=>{
- res.send("Home")
-});
+// app.use('/', (req, res)=>{
+//  res.send("Home")
+// });
 app.use('/', require('./routes/postRoute'));
 app.listen(port, () => {
     console.log('Server is Running.');
